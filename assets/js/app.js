@@ -43,3 +43,4 @@ import "phoenix_html"
 // >> liveSocket.disableLatencySim()
 // window.liveSocket = liveSocket
 
+import * as Turbo from "@hotwired/turbo"
