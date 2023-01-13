@@ -20,6 +20,13 @@ defmodule LimiterRemovalWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/items", LimiterRemovalWeb do
+    pipe_through :browser
+
+    get "/", ItemsController, :index
+    get "/edit", ItemsController, :edit
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", LimiterRemovalWeb do
   #   pipe_through :api

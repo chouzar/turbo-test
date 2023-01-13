@@ -1,0 +1,15 @@
+<% # This whole HTML response is returned from the server but only the `turbo-frame` with the right id is modified %>
+<body>
+
+  <% # The h1 here is returned but not replaced into the original form, as it doesn't match with the frame %>
+  <h1>Editing message</h1>
+
+  <turbo-frame id="message_1">
+    <form action="/messages/1">
+      <input name="message[name]" type="text" value="My message title">
+      <textarea name="message[content]">My message content</textarea>
+      <input type="submit">
+    </form>
+  </turbo-frame>
+
+</body>

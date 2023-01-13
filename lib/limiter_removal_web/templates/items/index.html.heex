@@ -1,0 +1,12 @@
+<body>
+  <!--<div id="navigation">Links targeting the entire page</div>-->
+
+  <% # We want to replace this content with a form from `/items/edit` %>
+  <%= # You should also consider that for accessibility reasons, it’s better to use actual forms and buttons for anything that’s not a GET. %>
+  <turbo-frame id="message_1">
+    <h2>Title</h2>
+    <p>Content</p>
+    <a href="/items/edit">Edit</a>
+  </turbo-frame>
+
+</body>
