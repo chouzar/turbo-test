@@ -11,4 +11,8 @@ defmodule LimiterRemovalWeb.ItemsController do
   def edit(conn, _params) do
     render(conn, "edit.html")
   end
+
+  def list(conn, _params) do
+    render(conn, "list.html")
+  end
 end

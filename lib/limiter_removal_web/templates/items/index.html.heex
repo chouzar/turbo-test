@@ -9,4 +9,11 @@
     <a href="/items/edit">Edit</a>
   </turbo-frame>
 
+  <% # a src attribute is present on the turbo-frame tag, the referenced URL will
+     # automatically be loaded as soon as the tag appears on the page %>
+
+  <h2>Lazy load content</h2>
+  <turbo-frame id="items" src="/items/list">
+    Loading...
+  </turbo-frame>
 </body>

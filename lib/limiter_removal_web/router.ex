@@ -25,6 +25,7 @@ defmodule LimiterRemovalWeb.Router do
 
     get "/", ItemsController, :index
     get "/edit", ItemsController, :edit
+    get "/list", ItemsController, :list
   end
 
   # Other scopes may use custom stacks.
