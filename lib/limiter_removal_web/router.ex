@@ -6,6 +6,7 @@ defmodule LimiterRemovalWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, {LimiterRemovalWeb.LayoutView, :root}
+    # Or set the layout at the controller level with `put_layout {Mod, fun}`
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,19 +15,39 @@ defmodule LimiterRemovalWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :turbo do
+    # This pipeline is optimized for SSE (server side events)
+    # and sending HTML over the wire.
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    # For Turbo Streams we could set request headers at this level or the controller
+  end
+
   scope "/", LimiterRemovalWeb do
     pipe_through :browser
 
     get "/", PageController, :index
   end
 
-  scope "/items", LimiterRemovalWeb do
+  scope "/chat", LimiterRemovalWeb do
     pipe_through :browser
 
-    get "/", ItemsController, :index
-    get "/edit", ItemsController, :edit
-    get "/list", ItemsController, :list
-    get "/messages/1", ItemsController, :index
+    get "/", ChatController, :index
+
+    # Although the path below retrieves a full page (with layout)
+    # only the matching tubo-frame id will be put in place
+    get "/list", ChatController, :list
+  end
+
+  scope "/turbo/chat", LimiterRemovalWeb do
+    # This path is meant to deliver turbo components
+    pipe_through :turbo
+
+    get "/edit", ChatController, :edit
+    post "/submit", ChatController, :submit
   end
 
   # Other scopes may use custom stacks.
