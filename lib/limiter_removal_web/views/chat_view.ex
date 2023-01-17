@@ -1,4 +1,4 @@
-defmodule LimiterRemovalWeb.ItemsView do
+defmodule LimiterRemovalWeb.ChatView do
   use LimiterRemovalWeb, :view
 
   # This is meant to be an example of how to render without
@@ -7,8 +7,8 @@ defmodule LimiterRemovalWeb.ItemsView do
   def render("list.html", assigns) do
     ~H"""
       <% # Lazy load this frame %>
-      <turbo-frame id="items">
-        <LimiterRemoval.ItemsComponent.list [] />
+      <turbo-frame id="agents">
+        <LimiterRemoval.ItemsComponent.list agents={@agents} />
       </turbo-frame>
     """
   end
@@ -17,18 +17,16 @@ end
 defmodule LimiterRemoval.ItemsComponent do
   use Phoenix.Component
 
+  # Upcoming phoenix version you can do:
+  # attr :items, :list, required: true
+
   def list(assigns) do
     ~H"""
-    <% # Lazy load this frame %>
-    <turbo-frame id="items">
-      <ul>
-        <li>Component 1</li>
-        <li>Component 2</li>
-        <li>Component 3</li>
-        <li>Component 4</li>
-        <li>Component 5</li>
-      </ul>
-    </turbo-frame>
+    <ol>
+      <%= for item <- @agents do %>
+      <li><%= item %></li>
+      <% end %>
+    </ol>
     """
   end
 end

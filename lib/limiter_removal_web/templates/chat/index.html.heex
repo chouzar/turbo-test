@@ -1,0 +1,32 @@
+<body>
+  <section>
+    <h2>Turbo Frame example</h2>
+    <% # We want to replace this content with a form from `/turbo/chat/edit` %>
+    <% # A link might be used to request HTML via GET. For accessibility reasons,
+       # it’s better to use actual forms and buttons for anything that’s not a GET.%>
+    <turbo-frame id="chat">
+      <p>Click edit for a new message</p>
+      <a href="/turbo/chat/edit">Edit</a>
+    </turbo-frame>
+  </section>
+
+  <br>
+  <br>
+  <section>
+    <h2>Turbo Stream example</h2>
+    <% # You should also consider that for accessibility reasons, it’s better to
+        # use actual forms and buttons for anything that’s not a GET. %>
+    <ul id="messages"></ul>
+  </section>
+
+  <br>
+  <br>
+  <section>
+    <h2>Lazy load example</h2>
+    <% # a src attribute is present on the turbo-frame tag, the referenced URL will
+       # automatically be loaded as soon as the tag appears on the page %>
+    <turbo-frame id="agents" src="/chat/list">
+      Loading...
+    </turbo-frame>
+  </section>
+</body>
